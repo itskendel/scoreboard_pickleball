@@ -1,11 +1,12 @@
 <script>
-const team_a = JSON.parse(localStorage.getItem('team_a') || '{}')
-const team_b = JSON.parse(localStorage.getItem('team_b') || '{}')
-const game_configuration = JSON.parse(localStorage.getItem('game_configuration') || '{}')
-
 export default {
   data() {
-    let current_server, current_team_server
+    const team_a = JSON.parse(localStorage.getItem('team_a') || '{}')
+    const team_b = JSON.parse(localStorage.getItem('team_b') || '{}')
+    const game_configuration = JSON.parse(localStorage.getItem('game_configuration') || '{}')
+
+    let current_server;
+    let current_team_server;
 
     if (game_configuration.first_server === 'team_a') {
       current_server = team_a.player_one
@@ -72,28 +73,34 @@ export default {
 
   watch: {
     team_a_score(newValue) {
-      team_a.score = newValue
-      localStorage.setItem('team_a', JSON.stringify(team_a))
-      if (team_a.score >= 11 && team_a.score - team_b.score >= 2) {
+      const teamA = JSON.parse(localStorage.getItem('team_a') || '{}')
+      const teamB = JSON.parse(localStorage.getItem('team_b') || '{}')
+      teamA.score = newValue
+      localStorage.setItem('team_a', JSON.stringify(teamA))
+      if (teamA.score >= 11 && teamA.score - (teamB.score ?? 0) >= 2) {
         localStorage.setItem('winner', 'team_a')
-        window.location.href = './result.html'
+        this.$router.push('/result')
       }
     },
     team_b_score(newValue) {
-      team_b.score = newValue
-      localStorage.setItem('team_b', JSON.stringify(team_b))
-      if (team_b.score >= 11 && team_b.score - team_a.score >= 2) {
+      const teamA = JSON.parse(localStorage.getItem('team_a') || '{}')
+      const teamB = JSON.parse(localStorage.getItem('team_b') || '{}')
+      teamB.score = newValue
+      localStorage.setItem('team_b', JSON.stringify(teamB))
+      if ((teamB.score ?? 0) >= 11 && teamB.score - (teamA.score ?? 0) >= 2) {
         localStorage.setItem('winner', 'team_b')
-        window.location.href = './result.html'
+        this.$router.push('/result')
       }
     },
     team_a_outside(newValue) {
-      team_a.outside_count = newValue
-      localStorage.setItem('team_a', JSON.stringify(team_a))
+      const teamA = JSON.parse(localStorage.getItem('team_a') || '{}')
+      teamA.outside_count = newValue
+      localStorage.setItem('team_a', JSON.stringify(teamA))
     },
     team_b_outside(newValue) {
-      team_b.outside_count = newValue
-      localStorage.setItem('team_b', JSON.stringify(team_b))
+      const teamB = JSON.parse(localStorage.getItem('team_b') || '{}')
+      teamB.outside_count = newValue
+      localStorage.setItem('team_b', JSON.stringify(teamB))
     },
   },
 }

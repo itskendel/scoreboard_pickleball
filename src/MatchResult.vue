@@ -28,7 +28,11 @@ export default {
 
   methods: {
     reset_match() {
-      window.location.href = './'
+      localStorage.removeItem('team_a')
+      localStorage.removeItem('team_b')
+      localStorage.removeItem('game_configuration')
+      localStorage.removeItem('winner')
+      this.$router.push('/')
     },
   },
 }
