@@ -10,6 +10,21 @@ function add_player() {
   const player_four = document.getElementById('player_four').value
   const first_server = document.getElementById('first_server').value
 
+  if (
+    !player_one ||
+    !player_two ||
+    !player_three ||
+    !player_four
+  ) {
+    window.alert('All player fields are required.')
+    return
+  }
+
+  if (!first_server) {
+    window.alert('Please select first server.')
+    return
+  }
+
   const team_a = { player_one, player_two, score: 0, outside_count: 0 }
   const team_b = { player_one: player_three, player_two: player_four, score: 0, outside_count: 0 }
   const game_configuration = { winner: '', first_server }
