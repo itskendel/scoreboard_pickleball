@@ -14,7 +14,7 @@ function add_player() {
     localStorage.setItem('team_a', JSON.stringify(team_a))
     localStorage.setItem('team_b', JSON.stringify(team_b))
     localStorage.setItem('game_configuration', JSON.stringify(game_configuration))
-    window.location.href = '/score.html'
+    window.location.href = '/scoreboard_pickleball/score.html'
   } catch (error) {
     console.log(error)
     window.alert('Try again.')

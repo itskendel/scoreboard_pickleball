@@ -28,7 +28,7 @@ export default {
 
   methods: {
     reset_match() {
-      window.location.href = '/'
+      window.location.href = '/scoreboard_pickleball'
     },
   },
 }

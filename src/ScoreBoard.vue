@@ -76,7 +76,7 @@ export default {
       localStorage.setItem('team_a', JSON.stringify(team_a))
       if (team_a.score >= 11 && team_a.score - team_b.score >= 2) {
         localStorage.setItem('winner', 'team_a')
-        window.location.href = '/result.html'
+        window.location.href = 'scoreboard_pickleball/result.html'
       }
     },
     team_b_score(newValue) {
@@ -84,7 +84,7 @@ export default {
       localStorage.setItem('team_b', JSON.stringify(team_b))
       if (team_b.score >= 11 && team_b.score - team_a.score >= 2) {
         localStorage.setItem('winner', 'team_b')
-        window.location.href = '/result.html'
+        window.location.href = 'scoreboard_pickleball/result.html'
       }
     },
     team_a_outside(newValue) {
